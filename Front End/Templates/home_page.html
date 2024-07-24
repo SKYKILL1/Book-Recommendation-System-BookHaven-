@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    </head>
+
+<body data-bs-theme="dark">
+    <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../Static/images/book-logo.jpeg" alt="Logo" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                BookHaven
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll ms-auto" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Recommendation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Link
+                </a> -->
+                    <!-- <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul> -->
+                    </li>
+                    <!-- <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Link</a>
+              </li> -->
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    </header>
+    <!-- <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+     -->
+
+    <div class="container">
+        <div class="row row-cols-2">
+            <div class="col">Welcome to BookHaven, your ultimate destination for personalized book
+                recommendations! Whether you're into thrilling mysteries, heartwarming romances, or
+                enlightening non-fiction, our intelligent recommendation system curates suggestions tailored
+                just for you. Simply enter a title you love, and discover a world of books you'll enjoy. Dive
+                into your next great read with BookVerse!</div>
+            <div class="col"><img src="../Static/images/book-logo.jpeg"></div>
+        </div>
+    </div>
+
+    <div class="container-sm text-center" id = "about">About Us</div>
+    <div class="container-sm text-center" id= "about_discover">Discover Our BookHaven</div>
+    <!-- create an attractive line here-->
+    <div class="container-fluid">Welcome to BookHaven, your premier destination for discovering and
+        enjoying books! Our state-of-the-art recommendation system, powered by advanced machine
+        learning algorithms, curates personalized book suggestions tailored to your unique tastes.
+        Whether you're a fan of captivating fiction, insightful non-fiction, or any genre in between,
+        BookHaven helps you find your next great read effortlessly.
+
+        But that's not all—BookHaven also offers an extensive library where you can search for and read
+        a wide variety of books. Our user-friendly interface makes it easy to browse through genres, authors,
+        and titles, ensuring you find exactly what you're looking for. Dive into the world of literature with our
+        seamless reading experience, available anytime, anywhere.
+
+        Join the BookHaven community today and unlock a universe of stories and knowledge at your fingertips.
+        Discover new favorites, revisit classics, and share your literary journey with fellow book enthusiasts.
+        At BookHaven, every book is a new adventure waiting to be explored.</div>
+    <!-- paste a good photo of a book here
+        
+        <img src= "">-->
+
+
+
+    <!-- books showing here -->
+
+    <div class="container-sm text-center">Recommendations</div>
+
+    <form method="POST" action="/">
+        <div class="form-floating mb-3">
+            <input type="text" name= "Title" class="form-control" id="floatingInput" placeholder="Data Smart" required>
+            <label for="floatingInput">Title</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" name= "Genre" class="form-control" id="floatingInput" placeholder="data_science">
+            <label for="floatingInput">Genre</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" name= "Author" class="form-control" id="floatingInput" placeholder="data_science">
+            <label for="floatingInput">Author</label>
+        </div>
+
+        <button type="submit" value="submit" class="btn btn-light">Get Recommendations</button>
+
+        <input class="btn btn-light" type="reset" value="Reset">
+    </form>
+    <hr>
+    <footer>
+        <div class="container-sm text-center">Copyright &copy; 2022 BookHaven</div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

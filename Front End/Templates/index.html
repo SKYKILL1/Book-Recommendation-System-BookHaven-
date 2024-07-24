@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BookHaven</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* 1. Fixed navbar */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-spacing {
+            margin-top: 120px;
+        }
+
+        /* 2. Beautiful text styling */
+        .col-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        /* 3. Ellipse image with new animation */
+        .col-image img {
+            margin-left: 60px;
+            width: 80%;
+            height: 70%;
+            border-radius: 50%;
+            border: 5px solid #f8f9fa;
+            animation: pulsate 2s infinite;
+        }
+
+        @keyframes pulsate {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* 4. Space between sections */
+
+        /* 5. Increase heading size */
+        #about {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        #about_discover {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        /* 6. Text area 70% width */
+        .container-fluid {
+            width: 70%;
+            margin-top: 20px;
+        }
+
+        /* 7. Recommendations heading size */
+        .recommendations-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* 8. Form container styling */
+        form {
+            border: 2px solid #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        /* 9. Navbar alignment */
+        .navbar-brand {
+            margin-right: auto;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        /* 10. Image alignment and size */
+        .centered-img {
+            display: block;
+            margin-top: 30px;
+            margin-left: 25%;
+            height: 50%;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        #form {
+            margin-top: 30px;
+        }
+
+        #books-table {
+            width: 60%;
+            max-height: 400px;
+            overflow-y: auto;
+            margin: auto;
+            display: block;
+        }
+
+        .divider.light {
+            margin-top: 20px;
+            background: #fff;
+            background: -webkit-linear-gradient(left, rgb(90, 90, 90) 0%, rgb(255, 255, 255) 50%, rgb(90, 90, 90) 100%);
+        }
+
+        .divider.light:before {
+            position: relative;
+            float: left;
+            background: linear-gradient(to right, rgba(100, 100, 100, 0), rgba(100, 100, 100, 1) 50%);
+            margin-top: 2px;
+            width: 50%;
+            height: .5px;
+            content: "";
+        }
+
+        .divider.light:after {
+            position: relative;
+            float: right;
+            background: linear-gradient(to left, rgba(100, 100, 100, 0), rgba(100, 100, 100, 1) 50%);
+            margin-top: 2px;
+            width: 50%;
+            height: .5px;
+            content: "";
+        }
+    </style>
+</head>
+
+<body data-bs-theme="dark">
+    <header>
+        <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary border-bottom" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{{url_for('static',filename='book-logo.jpeg')}}" alt="Logo" width="30" height="24"
+                        class="d-inline-block align-text-top">
+                    BookHaven
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav my-2 my-lg-0 navbar-nav-scroll ms-auto" style="--bs-scroll-height: 100px;">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#books">Books</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#recommendations">Recommendation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">Log Out</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/signup">Sign Up</a>
+                        </li>
+                        {% endif %}
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="width80">
+        <div class="divider light">
+        </div>
+
+        <div class="navbar-spacing"></div>
+        <div class="container mt-5" id="contaiiner-top">
+            <div class="row row-cols-2">
+                <div class="col col-text">Welcome to BookHaven, your ultimate destination for discovering your next
+                    great read! Our
+                    advanced recommendation system takes into account a book's genre, sub-genre, author, and even its
+                    physical
+                    attributes to suggest titles tailored to your unique preferences. Whether you're a fan of thrilling
+                    mysteries,
+                    heartwarming romances, or insightful non-fiction, BookHaven ensures you never run out of captivating
+                    books to explore.
+                    Dive into a personalized literary journey where every recommendation is crafted to match your
+                    tastes. Find hidden gems, revisit classics, and explore new genres—all at the click of a button.
+                    Start your next reading adventure with BookHaven today!</div>
+                <div class="col col-image"><img src="{{url_for('static',filename='book-logo.jpeg')}}"></div>
+            </div>
+        </div>
+
+
+        <div class="width80">
+            <div class="divider light" />
+        </div>
+
+        <div class="container-sm text-center" id="about">About Us</div>
+        <div class="container-sm text-center" id="about_discover">Discover Our BookHaven</div>
+        <!-- create an attractive line here -->
+        <div class="container-fluid">Welcome to BookHaven, your premier destination for discovering and
+            enjoying books! Our state-of-the-art recommendation system, powered by advanced machine
+            learning algorithms, curates personalized book suggestions tailored to your unique tastes.
+            Whether you're a fan of captivating fiction, insightful non-fiction, or any genre in between,
+            BookHaven helps you find your next great read effortlessly.
+
+            But that's not all—BookHaven also offers an extensive library where you can search for and read
+            a wide variety of books. Our user-friendly interface makes it easy to browse through genres, authors,
+            and titles, ensuring you find exactly what you're looking for. Dive into the world of literature with our
+            seamless reading experience, available anytime, anywhere.
+
+            Join the BookHaven community today and unlock a universe of stories and knowledge at your fingertips.
+            Discover new favorites, revisit classics, and share your literary journey with fellow book enthusiasts.
+            At BookHaven, every book is a new adventure waiting to be explored.</div>
+        <!-- paste a good photo of books here -->
+        <img src="{{url_for('static',filename='good-books.jpg')}}" alt="Books" class="centered-img">
+
+        <div class="width80">
+            <div class="divider light" />
+        </div>
+
+        <div class="container mt-5" id="books">
+            <h2 class="text-center">Books List</h2>
+            <form class="d-flex mb-3" method="POST" action="/">
+                <input class="form-control me-2" type="search" placeholder="Search by Title or Genre"
+                    aria-label="Search" name="search_query">
+                <select class="form-select me-2" aria-label="Search type" name="search_type">
+                    <option value="Title">Title</option>
+                    <option value="Genre">Genre</option>
+                </select>
+                <button class="btn btn-outline-light" type="submit">Search</button>
+                <button class="btn btn-outline-light ms-2" type="button" onclick="resetTable()">Reset Table</button>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-hover" id="books-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Height</th>
+                            <th>Publisher</th>
+                            <th>Genre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book['Title'] }}</td>
+                            <td>{{ book['Author'] }}</td>
+                            <td>{{ book['Height'] }}</td>
+                            <td>{{ book['Publisher'] }}</td>
+                            <td>{{ book['Genre'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="width80">
+            <div class="divider light" />
+        </div>
+
+        <div class="container-sm text-center recommendations-heading" id="recommendations">Recommendations</div>
+
+        <form id="form" method="POST" action="/predict">
+            <div class="form-floating mb-3">
+                <input type="text" name="Title" class="form-control" id="floatingInput" placeholder="Data Smart"
+                    required>
+                <label for="floatingInput">Title</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" name="Genre" class="form-control" id="floatingInput" placeholder="data_science">
+                <label for="floatingInput">Genre</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" name="Author" class="form-control" id="floatingInput" placeholder="John">
+                <label for="floatingInput">Author</label>
+            </div>
+
+            <button type="submit" value="submit" class="btn btn-light">Get Recommendations</button>
+            <input class="btn btn-light" type="reset" value="Reset">
+        </form>
+
+
+        <div class="width80">
+            <div class="divider light" />
+        </div>
+
+
+        <footer>
+            <div class="container-sm text-center" id="contact">Copyright &copy; 2024 BookHaven</div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script>
+            function resetTable() {
+                window.location.href = '/';
+            }
+        </script>
+</body>
+
+</html>
